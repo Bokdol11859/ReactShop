@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 400px;
+  background-color: rgb(215, 215, 215);
+  background-image: url("./background.jpeg");
+  background-size: cover;
+  color: white;
+}
+
+.App {
+  text-align: center;
+}
