@@ -14,7 +14,11 @@ function AllNavBar() {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">React Shop</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+            React Shop
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -23,11 +27,12 @@ function AllNavBar() {
             navbarScroll
           >
             <Nav.Link>
-              {" "}
-              <Link to="/">Home</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/detail">Detail</Link>
+              <Link
+                to="/detail"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Detail
+              </Link>
             </Nav.Link>
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
