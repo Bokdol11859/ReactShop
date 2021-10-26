@@ -45,7 +45,9 @@ function App() {
             </div>
           </div>
         </Route>
-        <Route path="/detail" component={Detail} />
+        <Route path="/detail/:id">
+          <Detail shoes={shoes} />
+        </Route>
         <Route path="/:id">
           <div>Anything</div>
         </Route>

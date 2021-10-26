@@ -1,8 +1,14 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-function Detail() {
+function Detail({ shoes }) {
+  let { id } = useParams();
   let history = useHistory();
+
+  // let shoe = shoes.filter((obj) => obj.id == id);
+  let shoe = shoes.find(function (item) {
+    return item.id == id;
+  });
 
   return (
     <div className="container">
@@ -14,9 +20,9 @@ function Detail() {
           />
         </div>
         <div className="col-md-6 mt-4">
-          <h4 className="pt-5">상품명</h4>
-          <p>상품설명</p>
-          <p>120000원</p>
+          <h4 className="pt-5">{shoe.title}</h4>
+          <p>{shoe.content}</p>
+          <p>${shoe.price}</p>
           <button className="btn btn-danger">주문하기</button>
           <button
             className="btn btn-danger"
