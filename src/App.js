@@ -7,15 +7,20 @@ import AllNavBar from "./components/navbar/navbar.components";
 import Main from "./components/main/main.components";
 import Detail from "./components/detail/detail.components";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
-function Item({ title, content, price, url }) {
+function Item({ id, title, content, price, url }) {
   return (
     <div className="col-md-4">
-      <img src={url} width="100%" alt="item" />
-      <h4>{title}</h4>
-      <p>{content}</p>
-      <p>${price}</p>
+      <Link
+        to={`/detail/${id}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <img src={url} width="100%" alt="item" />
+        <h4>{title}</h4>
+        <p>{content}</p>
+        <p>${price}</p>
+      </Link>
     </div>
   );
 }
@@ -35,6 +40,7 @@ function App() {
                 return (
                   <Item
                     key={i}
+                    id={shoe.id}
                     title={shoe.title}
                     content={shoe.content}
                     price={shoe.price}
@@ -45,9 +51,11 @@ function App() {
             </div>
           </div>
         </Route>
+
         <Route path="/detail/:id">
           <Detail shoes={shoes} />
         </Route>
+
         <Route path="/:id">
           <div>Anything</div>
         </Route>

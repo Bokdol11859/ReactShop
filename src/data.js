@@ -4,7 +4,7 @@ export default [
     title: "White and Black",
     content: "Made in France",
     price: 120000,
-    url: "https://codingapple1.github.io/shop/shoes0.jpg",
+    url: "https://codingapple1.github.io/shop/shoes1.jpg",
   },
 
   {
@@ -12,7 +12,7 @@ export default [
     title: "Red Knit",
     content: "Made in Seoul",
     price: 110000,
-    url: "https://codingapple1.github.io/shop/shoes1.jpg",
+    url: "https://codingapple1.github.io/shop/shoes2.jpg",
   },
 
   {
@@ -20,6 +20,6 @@ export default [
     title: "Grey Yordan",
     content: "Made in the States",
     price: 130000,
-    url: "https://codingapple1.github.io/shop/shoes2.jpg",
+    url: "https://codingapple1.github.io/shop/shoes3.jpg",
   },
 ];
