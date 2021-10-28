@@ -19,7 +19,7 @@ function Item({ id, title, content, price, url }) {
         <img src={url} width="100%" alt="item" />
         <h4>{title}</h4>
         <p>{content}</p>
-        <p>${price}</p>
+        <p>{price}원</p>
       </Link>
     </div>
   );

@@ -1,0 +1,20 @@
+$maincolor: #ff0000;
+
+.red {
+  color: $maincolor;
+}
+
+.alert {
+  background: #eeeeee;
+  padding: 20px;
+  border-radius: 5px;
+  margin: auto;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.alert2 {
+  @extend .alert;
+  background: #ffe591;
+}

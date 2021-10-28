@@ -1,5 +1,17 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
+import styled from "styled-components";
+import "./detail.components.scss";
+
+// Styled-components
+let Box = styled.div`
+  padding: 20px;
+`;
+
+let Title = styled.h4`
+  font-size: 25px;
+  color: ${(props) => props.color};
+`;
 
 function Detail({ shoes }) {
   let { id } = useParams();
@@ -12,6 +24,14 @@ function Detail({ shoes }) {
 
   return (
     <div className="container">
+      {/* Styled-components */}
+      <Box>
+        <Title>Detail</Title>
+      </Box>
+      <div className="alert">
+        <p>Almost out of stock!</p>
+      </div>
+
       <div className="row">
         <div className="col-md-6">
           <img src={shoe.url} width="100%" />
@@ -19,7 +39,7 @@ function Detail({ shoes }) {
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{shoe.title}</h4>
           <p>{shoe.content}</p>
-          <p>${shoe.price}</p>
+          <p>{shoe.price}원</p>
           <button className="btn btn-danger">주문하기</button>
           <button
             className="btn btn-danger"
