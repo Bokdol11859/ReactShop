@@ -9,6 +9,8 @@ import Detail from "./components/detail/detail.components";
 
 import { Route, Switch, Link } from "react-router-dom";
 
+import axios from "axios";
+
 function Item({ id, title, content, price, url }) {
   return (
     <div className="col-md-4">
@@ -27,7 +29,6 @@ function Item({ id, title, content, price, url }) {
 
 function App() {
   let [shoes, setShoes] = useState(Data);
-
   return (
     <div className="App">
       <AllNavBar />
@@ -50,6 +51,22 @@ function App() {
               })}
             </div>
           </div>
+          <button
+            className="btn btn-dark"
+            onClick={() => {
+              axios
+                .get("https://codingapple1.github.io/shop/data2.json")
+                .then((result) => {
+                  let tempData = [...shoes, ...result.data];
+                  setShoes(tempData);
+                })
+                .catch(() => {
+                  alert("Data not found");
+                });
+            }}
+          >
+            Load More
+          </button>
         </Route>
 
         <Route path="/detail/:id">

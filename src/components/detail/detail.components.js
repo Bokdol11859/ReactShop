@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./detail.components.scss";
@@ -14,6 +14,17 @@ let Title = styled.h4`
 `;
 
 function Detail({ shoes }) {
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  let [alert, setAlert] = useState(true);
   let { id } = useParams();
   let history = useHistory();
 
@@ -28,9 +39,11 @@ function Detail({ shoes }) {
       <Box>
         <Title>Detail</Title>
       </Box>
-      <div className="alert">
-        <p>Almost out of stock!</p>
-      </div>
+      {alert === true ? (
+        <div className="alert">
+          <p>Almost out of stock!</p>
+        </div>
+      ) : null}
 
       <div className="row">
         <div className="col-md-6">
@@ -40,8 +53,9 @@ function Detail({ shoes }) {
           <h4 className="pt-5">{shoe.title}</h4>
           <p>{shoe.content}</p>
           <p>{shoe.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
-          <button
+          <button className="btn btn-primary">주문하기</button>
+          <button className="btn btn-secondary">장바구니에 담기</button>
+          {/* <button
             className="btn btn-danger"
             onClick={() => {
               //   history.push("/");
@@ -49,7 +63,7 @@ function Detail({ shoes }) {
             }}
           >
             뒤로가기
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

@@ -26,13 +26,12 @@ function AllNavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link>
-              <Link
-                to="/detail"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Detail
-              </Link>
+            <Nav.Link
+              as={Link}
+              to="/detail"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Detail
             </Nav.Link>
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
