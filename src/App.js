@@ -52,25 +52,25 @@ function App() {
               })}
             </div>
           </div>
-          <button
-            className="btn btn-dark"
-            onClick={() => {
-              showMore === true
-                ? axios
-                    .get("https://api.jsonbin.io/b/617bfdf34a82881d6c6741a8")
-                    .then((result) => {
-                      let tempData = [...shoes, ...result.data];
-                      setShoes(tempData);
-                      setShowMore(false);
-                    })
-                    .catch(() => {
-                      alert("Data not found");
-                    })
-                : alert("No More Items!");
-            }}
-          >
-            Load More
-          </button>
+          {showMore === true ? (
+            <button
+              className="btn btn-dark"
+              onClick={() => {
+                axios
+                  .get("https://api.jsonbin.io/b/617bfdf34a82881d6c6741a8")
+                  .then((result) => {
+                    let tempData = [...shoes, ...result.data];
+                    setShoes(tempData);
+                    setShowMore(false);
+                  })
+                  .catch(() => {
+                    alert("Data not found");
+                  });
+              }}
+            >
+              Load More
+            </button>
+          ) : null}
         </Route>
 
         <Route path="/detail/:id">
