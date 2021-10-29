@@ -29,6 +29,7 @@ function Item({ id, title, content, price, url }) {
 
 function App() {
   let [shoes, setShoes] = useState(Data);
+  let [showMore, setShowMore] = useState(true);
   return (
     <div className="App">
       <AllNavBar />
@@ -54,15 +55,18 @@ function App() {
           <button
             className="btn btn-dark"
             onClick={() => {
-              axios
-                .get("https://codingapple1.github.io/shop/data2.json")
-                .then((result) => {
-                  let tempData = [...shoes, ...result.data];
-                  setShoes(tempData);
-                })
-                .catch(() => {
-                  alert("Data not found");
-                });
+              showMore === true
+                ? axios
+                    .get("https://api.jsonbin.io/b/617bfdf34a82881d6c6741a8")
+                    .then((result) => {
+                      let tempData = [...shoes, ...result.data];
+                      setShoes(tempData);
+                      setShowMore(false);
+                    })
+                    .catch(() => {
+                      alert("Data not found");
+                    })
+                : alert("No More Items!");
             }}
           >
             Load More
