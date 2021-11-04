@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -11,6 +11,17 @@ import { Route, Switch, Link } from "react-router-dom";
 
 import axios from "axios";
 
+export let StockContext = React.createContext();
+
+function Stock({ id }) {
+  let stock = useContext(StockContext);
+  return (
+    <>
+      <p>Stocks: {stock[id]}</p>
+    </>
+  );
+}
+
 function Item({ id, title, content, price, url }) {
   return (
     <div className="col-md-4">
@@ -22,6 +33,7 @@ function Item({ id, title, content, price, url }) {
         <h4>{title}</h4>
         <p>{content}</p>
         <p>{price}원</p>
+        <Stock id={id} />
       </Link>
     </div>
   );
@@ -30,6 +42,7 @@ function Item({ id, title, content, price, url }) {
 function App() {
   let [shoes, setShoes] = useState(Data);
   let [showMore, setShowMore] = useState(true);
+  let [stocks, setStocks] = useState([10, 11, 12]);
   return (
     <div className="App">
       <AllNavBar />
@@ -37,20 +50,22 @@ function App() {
         <Route exact path="/">
           <Main />
           <div className="container">
-            <div className="row">
-              {shoes.map((shoe, i) => {
-                return (
-                  <Item
-                    key={i}
-                    id={shoe.id}
-                    title={shoe.title}
-                    content={shoe.content}
-                    price={shoe.price}
-                    url={shoe.url}
-                  />
-                );
-              })}
-            </div>
+            <StockContext.Provider value={stocks}>
+              <div className="row">
+                {shoes.map((shoe, i) => {
+                  return (
+                    <Item
+                      key={i}
+                      id={shoe.id}
+                      title={shoe.title}
+                      content={shoe.content}
+                      price={shoe.price}
+                      url={shoe.url}
+                    />
+                  );
+                })}
+              </div>
+            </StockContext.Provider>
           </div>
           {showMore === true ? (
             <button
@@ -74,7 +89,9 @@ function App() {
         </Route>
 
         <Route path="/detail/:id">
-          <Detail shoes={shoes} />
+          <StockContext.Provider value={stocks}>
+            <Detail shoes={shoes} />
+          </StockContext.Provider>
         </Route>
 
         <Route path="/:id">

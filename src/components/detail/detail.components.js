@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./detail.components.scss";
+import { StockContext } from "../../App";
 
 // Styled-components
 let Box = styled.div`
@@ -13,7 +14,9 @@ let Title = styled.h4`
   color: ${(props) => props.color};
 `;
 
-function Detail({ shoes }) {
+function Detail({ shoes, setStock }) {
+  let stocks = useContext(StockContext);
+
   useEffect(() => {
     let timer = setTimeout(() => {
       setAlert(false);
@@ -42,6 +45,7 @@ function Detail({ shoes }) {
       {alert === true ? (
         <div className="alert">
           <p>Almost out of stock!</p>
+          <p>{stocks[id]} stocks left</p>
         </div>
       ) : null}
 
@@ -53,7 +57,14 @@ function Detail({ shoes }) {
           <h4 className="pt-5">{shoe.title}</h4>
           <p>{shoe.content}</p>
           <p>{shoe.price}원</p>
-          <button className="btn btn-primary">주문하기</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setStock();
+            }}
+          >
+            주문하기
+          </button>
           <button className="btn btn-secondary">장바구니에 담기</button>
           {/* <button
             className="btn btn-danger"
