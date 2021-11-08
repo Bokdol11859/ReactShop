@@ -42,7 +42,7 @@ function Item({ id, title, content, price, url }) {
 function App() {
   let [shoes, setShoes] = useState(Data);
   let [showMore, setShowMore] = useState(true);
-  let [stocks, setStocks] = useState([10, 11, 12]);
+  let [stocks, setStocks] = useState([1, 2, 3, 1, 2, 3]);
   return (
     <div className="App">
       <AllNavBar />

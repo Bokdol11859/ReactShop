@@ -3,6 +3,8 @@ import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./detail.components.scss";
 import { StockContext } from "../../App";
+import { CSSTransition } from "react-transition-group";
+import { Nav } from "react-bootstrap";
 
 // Styled-components
 let Box = styled.div`
@@ -30,6 +32,9 @@ function Detail({ shoes, setStock }) {
   let [alert, setAlert] = useState(true);
   let { id } = useParams();
   let history = useHistory();
+
+  let [tab, setTab] = useState(0);
+  let [switchTab, setSwitchTab] = useState(true);
 
   // let shoe = shoes.filter((obj) => obj.id == id);
   let shoe = shoes.find(function (item) {
@@ -77,8 +82,60 @@ function Detail({ shoes, setStock }) {
           </button> */}
         </div>
       </div>
+      <Nav variant="tabs" defaultActiveKey="link-0">
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-0"
+            onClick={() => {
+              setSwitchTab(false);
+              setTab(0);
+            }}
+          >
+            Option 0
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-1"
+            onClick={() => {
+              setSwitchTab(false);
+              setTab(1);
+            }}
+          >
+            Option 1
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-2"
+            onClick={() => {
+              setSwitchTab(false);
+              setTab(2);
+            }}
+          >
+            Option 2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <CSSTransition in={switchTab} classNames="animation" timeout={500}>
+        <TabContent tab={tab} setSwitchTab={setSwitchTab} />
+      </CSSTransition>
     </div>
   );
+}
+
+function TabContent({ tab, setSwitchTab }) {
+  useEffect(() => {
+    setSwitchTab(true);
+  });
+
+  if (tab == 0) {
+    return <div>0</div>;
+  } else if (tab == 1) {
+    return <div>1</div>;
+  } else if (tab == 2) {
+    return <div>2</div>;
+  }
 }
 
 export default Detail;

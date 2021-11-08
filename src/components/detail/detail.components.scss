@@ -18,3 +18,12 @@ $maincolor: #ff0000;
   @extend .alert;
   background: #ffe591;
 }
+
+.animation-enter {
+  opacity: 0;
+}
+
+.animation-enter-active {
+  opacity: 1;
+  transition: all 500ms;
+}
