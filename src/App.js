@@ -10,6 +10,7 @@ import Detail from "./components/detail/detail.components";
 import { Route, Switch, Link } from "react-router-dom";
 
 import axios from "axios";
+import Cart from "./components/cart/Cart";
 
 export let StockContext = React.createContext();
 
@@ -94,8 +95,12 @@ function App() {
           </StockContext.Provider>
         </Route>
 
+        <Route path="/cart">
+          <Cart />
+        </Route>
+
         <Route path="/:id">
-          <div>Anything</div>
+          <h1>Details</h1>
         </Route>
       </Switch>
     </div>
