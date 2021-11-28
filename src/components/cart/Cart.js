@@ -15,27 +15,55 @@ function Cart(props) {
           </tr>
         </thead>
         <tbody>
-          {props.state.map((item, i) => {
+          {props.shoeState.map((item, i) => {
             return (
               <tr>
                 <td>{i}</td>
                 <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>
-                  <Button>Delete Item</Button>
+                  <Button
+                    onClick={() => {
+                      props.dispatch({ type: "AddQuantity", i: i });
+                    }}
+                    style={{ marginRight: "5px" }}
+                  >
+                    +
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      props.dispatch({ type: "SubQuantity", i: i });
+                    }}
+                  >
+                    -
+                  </Button>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </Table>
+      {props.alertState && (
+        <div className="alert">
+          <p>지금 구매하시면 신규할인 20%</p>
+          <br />
+          <Button
+            onClick={() => {
+              props.dispatch({ type: "click" });
+            }}
+          >
+            Close
+          </Button>
+        </div>
+      )}
     </>
   );
 }
 
 function StateToProps(state) {
   return {
-    state: state,
+    shoeState: state.reducer,
+    alertState: state.reducer2,
   };
 }
 
